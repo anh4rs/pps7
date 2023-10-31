@@ -6,7 +6,7 @@
     @endif
     <div class="card">
 
-        <div class="card-header">{{ __('Daftar Kelas') }} <span class="float-end"><button type="button"
+        <div class="card-header">{{ __('Daftar User') }} <span class="float-end"><button type="button"
                     class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#modalTambah">Tambah</button></span></div>
 
@@ -16,16 +16,18 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nama Kelas</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($kelases as $item)
+                    @forelse ($users as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->namaKelas }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->email }}</td>
                             <td>@livewire('tombol-status', ['model' => $item, 'field' => 'isActive'], key($item->id))</td>
                             <td>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modalEdit"
@@ -46,7 +48,7 @@
                 </tbody>
             </table>
             <div>
-                {{ $kelases->links() }}
+                {{ $users->links() }}
             </div>
         </div>
     </div>
@@ -57,23 +59,29 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kelas Baru</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah User Baru</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form wire:submit.prevent="simpan">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="namaKelas" class="form-label">Nama Kelas</label>
-                            <input type="text" wire:model="namaKelas" class="form-control" id="namaKelas">
-                            @error('namaKelas')
+                            <label for="name" class="form-label">Nama User</label>
+                            <input type="text" wire:model="name" class="form-control" id="name">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="statusKelas" class="form-label">Status</label>
-                            <input type="text" wire:model="statusKelas" class="form-control" id="statusKelas"
-                                placeholder="aktif">
-                            @error('statusKelas')
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" wire:model="email" class="form-control" id="email">
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" wire:model="password" class="form-control" id="password">
+                            @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -94,23 +102,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kelas</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form wire:submit.prevent="update">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="namaKelas" class="form-label">Nama Kelas</label>
-                            <input type="text" wire:model="namaKelas" class="form-control" id="namaKelas">
-                            @error('namaKelas')
+                            <label for="name" class="form-label">Nama User</label>
+                            <input type="text" wire:model="name" class="form-control" id="name">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="statusKelas" class="form-label">Status</label>
-                            <input type="text" wire:model="statusKelas" class="form-control" id="statusKelas"
-                                placeholder="aktif">
-                            @error('statusKelas')
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" wire:model="email" class="form-control" id="email">
+                            @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -130,7 +137,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Kelas</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form wire:submit.prevent="destroy">

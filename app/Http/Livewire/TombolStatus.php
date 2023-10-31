@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Model;
 
-class KelasStatus extends Component
+class TombolStatus extends Component
 {
 
     public Model $model;
@@ -26,6 +26,6 @@ class KelasStatus extends Component
 
     public function render()
     {
-        return view('livewire.kelas-status');
+        return view('livewire.tombol-status');
     }
 }

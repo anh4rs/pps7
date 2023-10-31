@@ -50,7 +50,7 @@ class KelasTable extends Component
     {
         return view(
             'livewire.kelas.kelas-table',
-            ['kelases' => Kelas::latest()->paginate(3)]
+            ['kelases' => Kelas::latest()->paginate(10)]
         );
     }
 
@@ -60,7 +60,7 @@ class KelasTable extends Component
         $validatedData['namaKelas'] = "Kelas X";
         $validatedData['isActive'] = false;
         Kelas::create($validatedData);
-        session()->flash('message', 'Berhasil menambahkan kelas baru');
+        session()->flash('message', 'Berhasil menambahkan data baru');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -91,7 +91,7 @@ class KelasTable extends Component
         } else {
             return redirect()->to('/home');
         }
-        session()->flash('message', 'Kelas sukses diperbaharui');
+        session()->flash('message', 'Data sukses diperbaharui');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
     }
