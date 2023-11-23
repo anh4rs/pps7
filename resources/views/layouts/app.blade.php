@@ -86,12 +86,16 @@
             @yield('content')
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"></script>
-    <script src="{{ asset('bs/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{ asset('bs/js/bootstrap.bundle.min.js') }}"></script>
+
+
     @livewireScripts
     @yield('script')
-
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
 
 </html>

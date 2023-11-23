@@ -57,8 +57,8 @@ class KelasTable extends Component
     public function simpan()
     {
         // $validatedData = $this->validate();
-        $validatedData['namaKelas'] = "Kelas X";
-        $validatedData['isActive'] = false;
+        $validatedData['namaKelas'] = $this->namaKelas;
+        $validatedData['isActive'] = true;
         Kelas::create($validatedData);
         session()->flash('message', 'Berhasil menambahkan data baru');
         $this->resetInput();
